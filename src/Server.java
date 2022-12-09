@@ -249,8 +249,10 @@ public class Server {
                                                 storeNames[i] = stores.get(i).getName();
                                             }
                                             oos.writeObject(storeNames);
+                                            oos.flush();
                                         } else {
                                             oos.writeObject(null);
+                                            oos.flush();
                                         }
                                         break;
                                     case "2": // Delete store
@@ -262,6 +264,7 @@ public class Server {
                                             if (tempDelete.get(i).getName().equals(storeName)) {
                                                 tempDelete.remove(i);
                                                 oos.writeObject((Boolean) true);
+                                                oos.flush();
                                                 break;
                                             }
                                         }
@@ -292,6 +295,7 @@ public class Server {
                                             productSales.getPrice());
                                 }
                                 oos.writeObject(saleStrings);
+                                oos.flush();
                                 break;
                             case "5": // Import CSV for stores
                                 int userID5 = jsonObject.getInt("userID");
@@ -405,6 +409,7 @@ public class Server {
                                             productSales.getPrice());
                                 }
                                 oos.writeObject(saleStrings1);
+                                oos.flush();
                                 break;
                         }
                         break;
@@ -538,6 +543,7 @@ public class Server {
                                             oos.flush();
                                         } else {
                                             oos.writeObject("falseMQ");
+                                            oos.flush();
                                             oos.writeObject(product3.getOrderLimit());
                                             oos.flush();
                                         }
@@ -588,10 +594,12 @@ public class Server {
                                 oos.flush();
                                 break;
                             case "viewPurchaseHistory":
+                                System.out.println("In view purchase history");
                                 int customerID1 = jsonObject.getInt("customerID");
                                 Customer customer1 = getCust(customerID1);
                                 ArrayList<PurchaseHist> purchaseHist = customer1.getPurchaseHists();
                                 ArrayList<String[]> returner = new ArrayList<>();
+                                System.out.println("preparing to send purchase history");
                                 if (purchaseHist.size() > 0) {
                                     for (PurchaseHist purchaseHist1 : purchaseHist) {
                                         Products purchased = null;
@@ -614,11 +622,13 @@ public class Server {
                                                 priceString, totalString};
                                         returner.add(returner1);
                                     }
+
                                     oos.writeObject(returner);
                                 } else {
                                     oos.writeObject(returner);
                                 }
                                 oos.flush();
+                                System.out.println("Purchase history sent");
                                 break;
                             case "testCart":
                                 int customerID2 = jsonObject.getInt("customerID");
@@ -713,6 +723,7 @@ public class Server {
                                     }
                                 }
                                 oos.writeObject(removed);
+                                oos.flush();
                                 break;
                         }
                         break;
@@ -729,8 +740,10 @@ public class Server {
                                 sendStores.add(stores.get(i).getName());
                             }
                             oos.writeObject(sendStores);
+                            oos.flush();
                         } else {
                             oos.writeObject(sendStores);
+                            oos.flush();
                         }
                         break;
                     case "getProducts":
@@ -754,8 +767,10 @@ public class Server {
                                 sendProducts.add(products.get(i).getName());
                             }
                             oos.writeObject(sendProducts);
+                            oos.flush();
                         } else {
                             oos.writeObject(sendProducts);
+                            oos.flush();
                         }
                         break;
 
@@ -764,8 +779,8 @@ public class Server {
                     default:
                         break;
                 }
-                //writeCustomer();
-                //writeSeller();
+                writeCustomer();
+                writeSeller();
             } catch (Exception e) {
                 e.printStackTrace();
                 writeCustomer();

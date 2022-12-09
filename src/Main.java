@@ -540,11 +540,12 @@ public class Main {
                             if (storeProducts.size() > 0) {
                                 oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey", "5").put("userID",
                                         userID).put("objectSize", storeProducts.size())).toString());
+                                oos.flush();
                                 for (JSONObject temp : storeProducts) {
                                     oos.writeObject(temp.toString());
                                     oos.flush();
                                 }
-                                oos.flush();
+
                                 boolean importSuccess = (Boolean) ois.readObject();
                                 if (importSuccess) {
                                     JOptionPane.showMessageDialog(null, "File successfully imported!",
@@ -912,6 +913,7 @@ public class Main {
                             if (selectedProduct != null) {
                                 oos.writeObject((new JSONObject().put("userKey", "Customer").put(
                                         "actionKey", "getStorefromProduct").put("productName", selectedProduct)).toString());
+                                oos.flush();
                                 String selected = (String) ois.readObject();
                                 oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
                                         "specificProductCust").put("storeName", selected).put("productName",
@@ -1002,10 +1004,13 @@ public class Main {
                         }
                     }
                 } else if (response == 3) { //view purchase history
+                    System.out.println("BEfore calling purchase history");
                     oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
                             "viewPurchaseHistory").put("customerID", userID).toString());
                     oos.flush();
+                    System.out.println("After calling purchase history");
                     ArrayList<String[]> purchaseHistory = (ArrayList<String[]>) ois.readObject();
+                    System.out.println("After reading purchase history");
                     if (purchaseHistory.size() == 0) {
                         JOptionPane.showMessageDialog(null, "No purchases",
                                 "Customer Account", JOptionPane.PLAIN_MESSAGE);
@@ -1057,7 +1062,6 @@ public class Main {
                             cartInt = Integer.parseInt(cartString.substring(0, 1));
                         } while (cartInt < 1 || cartInt > 3);
                         if (cartInt == 1) { // checkout the cart
-                            int sizeOfCart = 0;
                             oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
                                     "getCheckoutCart").put("customerID", userID).toString());
                             oos.flush();
@@ -1072,6 +1076,7 @@ public class Main {
                                         productIDReturn).put("quantity", quantityReturn).put("customerID",
                                         userID);
                                 oos.writeObject(jsonRet.toString());
+                                oos.flush();
                                 JSONObject removeItem = new JSONObject().put("userKey", "Customer").put("actionKey",
                                         "removeItem").put("customerID", userID).put("productName", productName).put(
                                                 "quantityToRemove", 0);
