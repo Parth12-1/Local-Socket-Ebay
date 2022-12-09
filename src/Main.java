@@ -1078,15 +1078,6 @@ public class Main {
                                 oos.writeObject(removeItem.toString());
                                 oos.flush();
                             }
-                            sizeOfCart = (Integer) ois.readObject();
-                            System.out.println(sizeOfCart);
-                            for (int i = 0; i < sizeOfCart; i++){
-                                String preJ = (String) ois.readObject();
-                                JSONObject jsoSend = new JSONObject(preJ);
-                                oos.writeObject(jsoSend.toString());
-                                oos.flush();
-                                ois.readObject(); // TODO Add the return values
-                            }
                         } else if (cartInt == 2) { //Remove Item/Change item quantity
                             oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
                                     "testCart").put("customerID", userID).toString());
