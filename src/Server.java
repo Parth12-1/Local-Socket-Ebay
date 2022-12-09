@@ -764,8 +764,8 @@ public class Server {
                     default:
                         break;
                 }
-                writeCustomer();
-                writeSeller();
+                //writeCustomer();
+                //writeSeller();
             } catch (Exception e) {
                 e.printStackTrace();
                 writeCustomer();
