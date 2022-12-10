@@ -150,7 +150,7 @@ public class Main {
                 do {
                     String[] options = {"1. Edit my Stores", "2. Make a New Store", "3. Delete a Store",
                             "4. View Sales", "5. Import CSV for Stores", "6. Export CSV for Stores",
-                            "7. Export CSV for Sales", "8. Log Out"}; // Everything works but option 7
+                            "7. Export CSV for Sales", "8. Log Out"};
                     String optionString;
                     optionString = (String) JOptionPane.showInputDialog(null, "What would you like to do?",
                             "Seller Account", JOptionPane.QUESTION_MESSAGE,
@@ -663,8 +663,10 @@ public class Main {
                     oos.flush();
                     ArrayList<String> storeNames = (ArrayList<String>) ois.readObject();
                     String[] storeNamesArray = new String[storeNames.size()];
+                    System.out.println(storeNames.size());
                     for (String temp : storeNames) {
                         storeNamesArray[storeNames.indexOf(temp)] = temp;
+                        System.out.println(temp);
                     }
                     String selected = (String) JOptionPane.showInputDialog(null, "Select a store to view products",
                             "View Products", JOptionPane.QUESTION_MESSAGE, null,

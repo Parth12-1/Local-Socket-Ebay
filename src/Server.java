@@ -7,27 +7,38 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 
-public class Server {
+public class Server extends Thread {
     private static ArrayList<Seller> sellers = new ArrayList<Seller>();
     private static ArrayList<Customer> customers = new ArrayList<Customer>();
+    Socket socket;
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        File fileMake = new File("files/Accounts.txt");
-        fileMake.createNewFile();
+    public Server (Socket socket) {
+        this.socket = socket;
+        try {
+            File fileMake = new File("files/Accounts.txt");
+            fileMake.createNewFile();
 
-        fileMake = new File("files/Seller.txt");
-        fileMake.createNewFile();
+            fileMake = new File("files/Seller.txt");
+            fileMake.createNewFile();
 
-        fileMake = new File("files/Customer.txt");
-        fileMake.createNewFile();
+            fileMake = new File("files/Customer.txt");
+            fileMake.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();}
+    }
 
-        ServerSocket serverSocket;
-        serverSocket = new ServerSocket(1000); // PORT: 1000
-        Socket socket = serverSocket.accept();
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-        oos.flush();
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+    @Override
+    public void run() {
+        ObjectOutputStream oos = null;
+        ObjectInputStream ois = null;
+        try {
 
+         oos = new ObjectOutputStream(socket.getOutputStream());
+        //oos.flush();
+         ois = new ObjectInputStream(socket.getInputStream());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
         readCustomer();
         readSeller();
 
@@ -333,6 +344,7 @@ public class Server {
                                             }
                                             storeId1++;
                                             userS5.addStore(storeId1, newStoreName);
+                                            System.out.println("CSVADD");
                                         }
                                         Stores store = userS5.selectStore(newStoreName);
                                         int productId = 0;
@@ -424,6 +436,7 @@ public class Server {
                                         storeNames.add(store.getName());
                                     }
                                 }
+                                System.out.println(sellers.size());
                                 oos.writeObject(storeNames);
                                 oos.flush();
                                 break;
@@ -759,20 +772,28 @@ public class Server {
                 }
                 writeCustomer();
                 writeSeller();
+                readCustomer();
+                readSeller();
             } catch (Exception e) {
                 e.printStackTrace();
                 writeCustomer();
                 writeSeller();
+                readCustomer();
+                readSeller();
                 //socket.close();
                 runAgain = false;
             }
-        }while (runAgain);
+        } while (runAgain);
         //Write into database and read database EVERYWHERE. //TODO THIS
         writeCustomer();
         writeSeller();
-        oos.close();
-        ois.close();
-        socket.close();
+        try {
+            oos.close();
+            ois.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -838,6 +859,7 @@ public class Server {
 
     public static void readSeller() {
         try {
+            sellers = new ArrayList<>();
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/Seller.txt"));
             Seller obj = null;
             while ((obj = (Seller) in.readObject()) != null) {
@@ -851,7 +873,7 @@ public class Server {
 
     public static void readCustomer() {
         try {
-
+            customers = new ArrayList<>();
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("files/Customer.txt"));
             Customer obj = null;
             while ((obj = (Customer) in.readObject()) != null) {
@@ -954,3 +976,5 @@ public class Server {
 
 
 }
+
+
