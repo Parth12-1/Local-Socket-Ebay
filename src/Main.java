@@ -39,7 +39,6 @@ public class Main {
                 oos.flush();
                 String presignedIn = (String) ois.readObject();
 
-
                 if (presignedIn == null) {
                     JOptionPane.showMessageDialog(null,
                             "Invalid email or password. Please try again.",
@@ -1063,6 +1062,17 @@ public class Main {
                         } while (cartInt < 1 || cartInt > 3);
                         if (cartInt == 1) { // checkout the cart
                             oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
+                                    "buyCart").put("customerID", userID).toString());
+                            oos.flush();
+                            String success = (String) ois.readObject();
+                            if (success.equals("true")) {
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(null, "Failed to Purchase all!",
+                                        "Failed to purchase ALL items, look at max order quantities and quanitity of " +
+                                                "products", JOptionPane.ERROR_MESSAGE);
+                            }
+                            /*oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
                                     "getCheckoutCart").put("customerID", userID).toString());
                             oos.flush();
                             ArrayList<String[]> products = (ArrayList<String[]>) ois.readObject();
@@ -1076,13 +1086,12 @@ public class Main {
                                         productIDReturn).put("quantity", quantityReturn).put("customerID",
                                         userID);
                                 oos.writeObject(jsonRet.toString());
-                                oos.flush();
                                 JSONObject removeItem = new JSONObject().put("userKey", "Customer").put("actionKey",
                                         "removeItem").put("customerID", userID).put("productName", productName).put(
                                                 "quantityToRemove", 0);
                                 oos.writeObject(removeItem.toString());
                                 oos.flush();
-                            }
+                            }*/
                         } else if (cartInt == 2) { //Remove Item/Change item quantity
                             oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
                                     "testCart").put("customerID", userID).toString());

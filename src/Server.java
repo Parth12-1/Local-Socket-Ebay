@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import javax.swing.*;
 
 public class Server {
-
     private static ArrayList<Seller> sellers = new ArrayList<Seller>();
     private static ArrayList<Customer> customers = new ArrayList<Customer>();
 
@@ -668,33 +667,6 @@ public class Server {
                                 }
                                 oos.flush();
                                 break;
-                            case "getCheckoutCart":
-                                int customerID4 = jsonObject.getInt("customerID");
-                                Customer customer4 = getCust(customerID4);
-                                ArrayList<Cart> carts = customer4.getCarts();
-                                ArrayList<String[]> returnerCartArray1 = new ArrayList<>();
-                                for (Cart c: carts) {
-                                    String storeReturn = null;
-                                    int productIDReturn = c.getProductID();
-                                    int quantityReturn = c.getQuantity();
-                                    String productNameReturn = null;
-                                    for (Seller s: sellers) {
-                                        for (Stores s1: s.getStores()) {
-                                            for (Products p: s1.getStoreProducts()) {
-                                                if (p.getProductID() == c.getProductID()) {
-                                                    storeReturn = s1.getName();
-                                                    productNameReturn = p.getName();
-                                                }
-                                            }
-                                        }
-                                    }
-                                    String[] returnerArray = {storeReturn, Integer.toString(productIDReturn),
-                                            Integer.toString(quantityReturn), productNameReturn};
-                                    returnerCartArray1.add(returnerArray);
-                                }
-                                oos.writeObject(returnerCartArray1);
-                                oos.flush();
-                                break;
                             case "removeItem":
                                 int customerID5 = jsonObject.getInt("customerID");
                                 String productName5 = jsonObject.getString("productName");
@@ -725,9 +697,15 @@ public class Server {
                                 oos.writeObject(removed);
                                 oos.flush();
                                 break;
+                            case "buyCart":
+                                System.out.println("inniiiittt to win ittt");
+                                int customerID6 = jsonObject.getInt("customerID");
+                                Customer customer6 = getCust(customerID6);
+                                oos.writeObject(purchaseCart(customer6));
+                                oos.flush();
+                                break;
                         }
                         break;
-
                     case "getStores":
                         //send back the stores
                         int userID = jsonObject.getInt("userID");
@@ -929,6 +907,49 @@ public class Server {
             }
         }
         return null;
+    }
+
+    public static String purchaseCart(Customer userC) {
+        Boolean purchase = true;
+        ArrayList<Cart> cartToRemove = new ArrayList<>();
+        for (Cart cart: userC.getCarts()) {
+            //we have the productID, quantity and price
+            Products products = null;
+            Stores productStore = null;
+            for (Seller s : sellers) {
+                for (Stores s1 : s.getStores()) {
+                    for (Products p : s1.getStoreProducts()) {
+                        if (p.getProductID() == cart.getProductID()) {
+                            products = p;
+                            productStore = s1;
+                            break;
+                        }
+                    }
+                }
+            }
+            double productPrice = products.getPrice();
+            int productID = products.getProductID();
+            int storeID = productStore.getStoreID();
+            int sellerID = productStore.getSellerID();
+            int quantity = cart.getQuantity();
+            if (quantity > 0 && quantity <= products.getQuantity() && products.getOrderLimit() >= quantity) {
+                userC.addPurchase(sellerID, storeID, productID, quantity,
+                        productPrice);
+                productStore.addSale(productID, quantity, productPrice, userC.getCustId(), products.getName());
+                cartToRemove.add(cart);
+            }
+            else {
+                purchase = false;
+            }
+        }
+        for (Cart cart: cartToRemove) {
+            userC.removeCart(cart);
+        }
+        if (purchase) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
 
