@@ -1,5 +1,5 @@
 # CS180-Project-5
-Project 5 CS180
+Project 5 CS180 - L28
 
 # Project 5: 
 Project 5 consists of PJ-4 (required 4 Components (3 Core and 1 selection) + 1 extra component), but with concurrency, Network IO, and a GUI.

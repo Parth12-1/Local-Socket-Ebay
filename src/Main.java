@@ -1300,7 +1300,7 @@ public class Main {
                                 }
                             }
                             String quantityToRemoveString = JOptionPane.showInputDialog(null,
-                                    "How many would you like to have now? " +
+                                    "How many would you like to have now? (Enter 0 to complete remove item) " +
                                             "Current quantity: " + currentQuantity);
                             if (quantityToRemoveString == null) {
                                 leave = true;
