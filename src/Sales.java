@@ -36,7 +36,7 @@ public class Sales implements Serializable {
 
     public void addProductSales(int productID, int quantity, double price, int customerId, String productName) {
         productSales.add(new ProductSales(productID, quantity, price, customerId, productName));
-        totalSales = totalSales + (quantity*price);
+        totalSales = totalSales + (quantity * price);
     }
 
 

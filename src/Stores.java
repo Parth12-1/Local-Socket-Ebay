@@ -7,7 +7,7 @@ public class Stores implements Serializable {
     String name;
     int sellerID;
     ArrayList<Products> storeProducts = new ArrayList<Products>();
-    Sales sales = new Sales(storeID,sellerID,0);
+    Sales sales = new Sales(storeID, sellerID, 0);
 
     public Stores(int storeID, String name, int sellerID) {
         this.storeID = storeID;
@@ -30,7 +30,6 @@ public class Stores implements Serializable {
     public void setSales(Sales sales) {
         this.sales = sales;
     }
-
 
 
     public int getStoreID() {
@@ -68,11 +67,8 @@ public class Stores implements Serializable {
     public void addSale(int productID, int quantity, double price, int customerId, String productName) {
         sales.addProductSales(productID, quantity, price, customerId, productName);
         Products changeQ = selectProductID(productID);
-        changeQ.setQuantity(changeQ.getQuantity()-quantity);
+        changeQ.setQuantity(changeQ.getQuantity() - quantity);
     }
-
-
-
 
 
     public boolean isEmpty() {
@@ -103,10 +99,6 @@ public class Stores implements Serializable {
         }
         return selected;
     }
-
-
-
-
 
 
 }

@@ -26,7 +26,7 @@ public class Customer implements Serializable {
         return custId;
     }
 
-    public void addToCart(int quantity, int productID){
+    public void addToCart(int quantity, int productID) {
         boolean found = false;
         for (Cart cart : carts) {
             if (cart.getProductID() == productID) {

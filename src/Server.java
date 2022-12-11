@@ -12,7 +12,7 @@ public class Server extends Thread {
     private static ArrayList<Customer> customers = new ArrayList<Customer>();
     Socket socket;
 
-    public Server (Socket socket) {
+    public Server(Socket socket) {
         this.socket = socket;
         try {
             File fileMake = new File("files/Accounts.txt");
@@ -24,7 +24,8 @@ public class Server extends Thread {
             fileMake = new File("files/Customer.txt");
             fileMake.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -33,12 +34,12 @@ public class Server extends Thread {
         ObjectInputStream ois = null;
         try {
 
-         oos = new ObjectOutputStream(socket.getOutputStream());
-        //oos.flush();
-         ois = new ObjectInputStream(socket.getInputStream());
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            //oos.flush();
+            ois = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         readCustomer();
         readSeller();
 
@@ -194,7 +195,7 @@ public class Server extends Thread {
                                                     }
                                                 }
                                                 pId++;
-                                                System.out.println("ID: " + pId + ","+ productName + productDescription +
+                                                System.out.println("ID: " + pId + "," + productName + productDescription +
                                                         productQuantity + productPrice + maxQuantity);
                                                 stores.addStoreProduct(pId, productName, productDescription,
                                                         productQuantity, productPrice, maxQuantity);
@@ -358,7 +359,7 @@ public class Server extends Thread {
                                             }
                                         }
                                         productId++;
-                                        System.out.println("ID: " + productId + ","+ productName + productDescription +
+                                        System.out.println("ID: " + productId + "," + productName + productDescription +
                                                 productQuantity + productPrice + maxQuantity);
 
                                         store.addStoreProduct(productId, productName, productDescription, productQuantity, productPrice,
@@ -512,7 +513,7 @@ public class Server extends Thread {
                                     }
                                 }
                                 if (product2.getQuantity() >= quantity2) {
-                                    customer.addToCart(quantity2,product2.getProductID());
+                                    customer.addToCart(quantity2, product2.getProductID());
                                     System.out.println("Product added to cart" + "ID:" + product2.getProductID());
                                     oos.writeObject(true);
                                     oos.flush();
@@ -648,12 +649,12 @@ public class Server extends Thread {
                                 ArrayList<Cart> cart = customer2.getCarts();
                                 ArrayList<String[]> returnerCartArray = new ArrayList<>();
                                 if (cart.size() > 0) {
-                                    for (Cart c: cart) {
+                                    for (Cart c : cart) {
                                         System.out.println(c.getProductID());
                                         Products product = null;
-                                        for (Seller s: sellers) {
-                                            for (Stores s1: s.getStores()) {
-                                                for (Products p: s1.getStoreProducts()) {
+                                        for (Seller s : sellers) {
+                                            for (Stores s1 : s.getStores()) {
+                                                for (Products p : s1.getStoreProducts()) {
                                                     if (p.getProductID() == c.getProductID()) {
                                                         System.out.println("found product" + p.getProductID());
                                                         product = p;
@@ -674,8 +675,7 @@ public class Server extends Thread {
                                         returnerCartArray.add(returnerArray);
                                     }
                                     oos.writeObject(returnerCartArray);
-                                }
-                                else {
+                                } else {
                                     oos.writeObject(returnerCartArray);
                                 }
                                 oos.flush();
@@ -685,9 +685,9 @@ public class Server extends Thread {
                                 String productName5 = jsonObject.getString("productName");
                                 int quantity5 = jsonObject.getInt("quantityToRemove");
                                 int productID5 = 0;
-                                for (Seller s: sellers) {
-                                    for (Stores s1: s.getStores()) {
-                                        for (Products p: s1.getStoreProducts()) {
+                                for (Seller s : sellers) {
+                                    for (Stores s1 : s.getStores()) {
+                                        for (Products p : s1.getStoreProducts()) {
                                             if (p.getName().equalsIgnoreCase(productName5)) {
                                                 productID5 = p.getProductID();
                                             }
@@ -696,7 +696,7 @@ public class Server extends Thread {
                                 }
                                 Customer customer5 = getCust(customerID5);
                                 boolean removed = false;
-                                for (Cart c: customer5.getCarts()) {
+                                for (Cart c : customer5.getCarts()) {
                                     if (c.getProductID() == productID5) {
                                         if (quantity5 > 1) {
                                             c.setQuantity(quantity5);
@@ -934,7 +934,7 @@ public class Server extends Thread {
     public static String purchaseCart(Customer userC) {
         Boolean purchase = true;
         ArrayList<Cart> cartToRemove = new ArrayList<>();
-        for (Cart cart: userC.getCarts()) {
+        for (Cart cart : userC.getCarts()) {
             //we have the productID, quantity and price
             Products products = null;
             Stores productStore = null;
@@ -959,12 +959,11 @@ public class Server extends Thread {
                         productPrice);
                 productStore.addSale(productID, quantity, productPrice, userC.getCustId(), products.getName());
                 cartToRemove.add(cart);
-            }
-            else {
+            } else {
                 purchase = false;
             }
         }
-        for (Cart cart: cartToRemove) {
+        for (Cart cart : cartToRemove) {
             userC.removeCart(cart);
         }
         if (purchase) {
