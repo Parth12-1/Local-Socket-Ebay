@@ -43,10 +43,7 @@ public class Seller implements Serializable {
     }
 
     public boolean isEmpty() {
-        if (stores == null || stores.size() == 0) {
-            return true;
-        }
-        return false;
+        return (stores == null || stores.size() == 0);
     }
 
     public Stores selectStore(String storeSelected) {

@@ -63,9 +63,9 @@ public class Stores implements Serializable {
         this.storeProducts = storeProducts;
     }
 
-    public void addStoreProduct(int productID, String name, String description, int quantity, double price,
+    public void addStoreProduct(int productID, String name1, String description, int quantity, double price,
                                 int orderLimit) {
-        storeProducts.add(new Products(productID, name, description, quantity, price, orderLimit));
+        storeProducts.add(new Products(productID, name1, description, quantity, price, orderLimit));
     }
 
     public void removeStoreProduct(Products product) {
@@ -80,10 +80,7 @@ public class Stores implements Serializable {
 
 
     public boolean isEmpty() {
-        if (storeProducts == null || storeProducts.size() == 0) {
-            return true;
-        }
-        return false;
+        return (storeProducts == null || storeProducts.size() == 0);
     }
 
     public Products selectProduct(String productSelected) {

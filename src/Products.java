@@ -48,12 +48,12 @@ public class Products implements Serializable {
         return orderLimit;
     }
 
-    public void editProduct(String name, String description, int quantity, double price, int orderLimit) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.quantity = quantity;
-        this.orderLimit = orderLimit;
+    public void editProduct(String name1, String description1, int quantity1, double price1, int orderLimit1) {
+        this.name = name1;
+        this.description = description1;
+        this.price = price1;
+        this.quantity = quantity1;
+        this.orderLimit = orderLimit1;
     }
 
     public void setQuantity(int quantity) {

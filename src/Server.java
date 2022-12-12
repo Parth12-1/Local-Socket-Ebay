@@ -133,8 +133,10 @@ public class Server extends Thread {
                                                         }
                                                         for (Products p : stores1.getStoreProducts()) {
                                                             if (p.getName().equals(oldProductName)) {
-                                                                p.editProduct(productName1, productDescription,
-                                                                        productQuantity, productPrice, maxQuantity);
+                                                                p.editProduct(productName1,
+                                                                        productDescription,
+                                                                        productQuantity,
+                                                                        productPrice, maxQuantity);
 
                                                                 break;
                                                             }
@@ -143,8 +145,10 @@ public class Server extends Thread {
                                                     case "info": // send back an JSONobject of the product's
                                                         // information
                                                         int userID = jsonObject.getInt("userID");
-                                                        String storeName = jsonObject.getString("storeName");
-                                                        String productName = jsonObject.getString("productName");
+                                                        String storeName = jsonObject
+                                                                .getString("storeName");
+                                                        String productName = jsonObject
+                                                                .getString("productName");
                                                         Stores stores = null;
                                                         Seller seller = null;
                                                         for (Seller s : sellers) {
@@ -165,8 +169,10 @@ public class Server extends Thread {
                                                                 productInfo.put("name", p.getName());
                                                                 productInfo.put("price", p.getPrice());
                                                                 productInfo.put("quantity", p.getQuantity());
-                                                                productInfo.put("description", p.getDescription());
-                                                                productInfo.put("maxQuantity", p.getOrderLimit());
+                                                                productInfo.put("descrip" +
+                                                                        "tion", p.getDescription());
+                                                                productInfo.put("maxQuan" +
+                                                                        "tity", p.getOrderLimit());
                                                                 oos.writeObject(productInfo.toString());
                                                                 oos.flush();
                                                                 break;
@@ -890,7 +896,6 @@ public class Server extends Thread {
             while ((obj = (Seller) in.readObject()) != null) {
                 sellers.add(obj);
             }
-        } catch (EOFException e) {
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -904,7 +909,6 @@ public class Server extends Thread {
             while ((obj = (Customer) in.readObject()) != null) {
                 customers.add(obj);
             }
-        } catch (EOFException e) {
         } catch (Exception e) {
             e.printStackTrace();
         }
