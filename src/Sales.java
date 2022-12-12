@@ -1,6 +1,13 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Sales.java
+ * This class description is mentioned in the README.md.
+ *
+ * @author Parth Shah, Pranav Konda, Aarush Sachdeva
+ * @version December 10th, 2022
+ */
 public class Sales implements Serializable {
 
     ArrayList<ProductSales> productSales = new ArrayList<ProductSales>();
