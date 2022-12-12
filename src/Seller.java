@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *Seller.java
+ * Seller.java
  * This class description is mentioned in the README.md.
  *
  * @author Parth Shah, Pranav Konda, Aarush Sachdeva
@@ -38,7 +38,7 @@ public class Seller implements Serializable {
         stores.add(new Stores(storeId, storeName, sellerId));
     }
 
-    public void removeStore(Stores store) { //TODO: Remove the sales too
+    public void removeStore(Stores store) {
         stores.remove(store);
     }
 

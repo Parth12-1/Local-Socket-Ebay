@@ -170,7 +170,8 @@ public class Main {
                             "4. View Sales", "5. Import CSV for Stores", "6. Export CSV for Stores",
                             "7. Export CSV for Sales", "8. Log Out"};
                     String optionString;
-                    optionString = (String) JOptionPane.showInputDialog(null, "What would you like to do?",
+                    optionString = (String) JOptionPane.showInputDialog(null,
+                            "What would you like to do?",
                             "Seller Account", JOptionPane.QUESTION_MESSAGE,
                             null, options, options[0]);
                     if (optionString == null) {
@@ -344,32 +345,37 @@ public class Main {
                                                     return;
                                                 }
                                             } else if (option3 == 4) {
-                                                String newQuantityString = JOptionPane.showInputDialog(null,
-                                                        "Enter the new quantity of the product." +
-                                                                " Current quantity: " + quantity,
-                                                        "New Quantity of the Product", JOptionPane.QUESTION_MESSAGE);
+                                                String newQuantityString =
+                                                        JOptionPane.showInputDialog(null,
+                                                                "Enter the new quantity of the product." +
+                                                                        " Current quantity: " + quantity,
+                                                                "New Quantity of the Product",
+                                                                JOptionPane.QUESTION_MESSAGE);
                                                 if (newQuantityString == null) {
                                                     exit = true;
                                                     return;
                                                 }
                                                 newQuantity = Integer.parseInt(newQuantityString);
                                             } else if (option3 == 3) {
-                                                String newPriceString = JOptionPane.showInputDialog(null,
-                                                        "Enter the new price of the product." +
-                                                                " Current price: $" + price,
-                                                        "New Price of the Product", JOptionPane.QUESTION_MESSAGE);
+                                                String newPriceString =
+                                                        JOptionPane.showInputDialog(null,
+                                                                "Enter the new price of the product." +
+                                                                        " Current price: $" + price,
+                                                                "New Price of the Product",
+                                                                JOptionPane.QUESTION_MESSAGE);
                                                 if (newPriceString == null) {
                                                     exit = true;
                                                     return;
                                                 }
                                                 newPrice = Double.parseDouble(newPriceString);
                                             } else if (option3 == 5) {
-                                                String newMaxQString = JOptionPane.showInputDialog(null,
-                                                        "Enter the new max quantity of the " +
-                                                                "product (insert -1 for no max). Current " +
-                                                                "Max quantity:" + " " + maxQ,
-                                                        "New Quantity Limit of the Product",
-                                                        JOptionPane.QUESTION_MESSAGE);
+                                                String newMaxQString =
+                                                        JOptionPane.showInputDialog(null,
+                                                                "Enter the new max quantity of the " +
+                                                                        "product (insert -1 for no max). Current " +
+                                                                        "Max quantity:" + " " + maxQ,
+                                                                "New Quantity Limit of the Product",
+                                                                JOptionPane.QUESTION_MESSAGE);
                                                 if (newMaxQString == null) {
                                                     exit = true;
                                                     return;
@@ -463,7 +469,8 @@ public class Main {
                                         .put("productDescription", description).put("productPrice", price)
                                         .put("productQuantity", quantity).put("maxQuantity", quantity2)).toString());
                                 oos.flush();
-                                JOptionPane.showMessageDialog(null, "Product added Successfully!",
+                                JOptionPane.showMessageDialog(null,
+                                        "Product added Successfully!",
                                         "Success", JOptionPane.INFORMATION_MESSAGE);
                             } else if (option2 == 3) {
                                 // remove product
@@ -494,11 +501,13 @@ public class Main {
                                 }
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Store doesn't Exist. please try again!",
+                            JOptionPane.showMessageDialog(null,
+                                    "Store doesn't Exist. please try again!",
                                     "Store not found", JOptionPane.WARNING_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "There are no stores in your account.",
+                        JOptionPane.showMessageDialog(null,
+                                "There are no stores in your account.",
                                 "Warning", JOptionPane.WARNING_MESSAGE);
                     }
                 } else if (option == 2) {
@@ -558,7 +567,8 @@ public class Main {
                         for (String temp : stores) {
                             storeNames[stores.indexOf(temp)] = temp;
                         }
-                        String selected = (String) JOptionPane.showInputDialog(null, "Select a store to view sales",
+                        String selected = (String) JOptionPane.showInputDialog(null,
+                                "Select a store to view sales",
                                 "View Sales", JOptionPane.QUESTION_MESSAGE, null,
                                 storeNames, storeNames[0]);
                         if (selected == null) {
@@ -578,7 +588,8 @@ public class Main {
                                 JOptionPane.showMessageDialog(null, salesArray,
                                         "Sales", JOptionPane.INFORMATION_MESSAGE);
                             } else {
-                                JOptionPane.showMessageDialog(null, "There are no sales for this store.",
+                                JOptionPane.showMessageDialog(null,
+                                        "There are no sales for this store.",
                                         "No Sales",
                                         JOptionPane.INFORMATION_MESSAGE); // displays error message
                             }
@@ -587,7 +598,8 @@ public class Main {
                                     "Store not Found", JOptionPane.WARNING_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "You have no stores to view sales for.",
+                        JOptionPane.showMessageDialog(null,
+                                "You have no stores to view sales for.",
                                 "No Stores",
                                 JOptionPane.ERROR_MESSAGE); // displays error message
                     }
@@ -627,14 +639,16 @@ public class Main {
                                             line[5]));
 
                                 } else {
-                                    JOptionPane.showMessageDialog(null, "Store formatted incorrectly!",
+                                    JOptionPane.showMessageDialog(null,
+                                            "Store formatted incorrectly!",
                                             "Format Error", JOptionPane.ERROR_MESSAGE);
                                     success = false;
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            JOptionPane.showMessageDialog(null, "File not found, please try again",
+                            JOptionPane.showMessageDialog(null,
+                                    "File not found, please try again",
                                     "File not Found", JOptionPane.WARNING_MESSAGE);
                             success = false;
                         }
@@ -642,7 +656,7 @@ public class Main {
                             if (storeProducts.size() > 0) {
                                 oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey", "5")
                                         .put("userID",
-                                        userID).put("objectSize", storeProducts.size())).toString());
+                                                userID).put("objectSize", storeProducts.size())).toString());
                                 oos.flush();
                                 for (JSONObject temp : storeProducts) {
                                     oos.writeObject(temp.toString());
@@ -651,10 +665,12 @@ public class Main {
 
                                 boolean importSuccess = (Boolean) ois.readObject();
                                 if (importSuccess) {
-                                    JOptionPane.showMessageDialog(null, "File successfully imported!",
+                                    JOptionPane.showMessageDialog(null,
+                                            "File successfully imported!",
                                             "Import Successful", JOptionPane.INFORMATION_MESSAGE);
                                 } else {
-                                    JOptionPane.showMessageDialog(null, "File could not be imported!",
+                                    JOptionPane.showMessageDialog(null,
+                                            "File could not be imported!",
                                             "Import Unsuccessful", JOptionPane.ERROR_MESSAGE);
                                 }
                             }
@@ -709,7 +725,8 @@ public class Main {
                     for (String temp : stores) {
                         storeNames[stores.indexOf(temp)] = temp;
                     }
-                    String selected = (String) JOptionPane.showInputDialog(null, "Select a store to export sales",
+                    String selected = (String) JOptionPane.showInputDialog(null,
+                            "Select a store to export sales",
                             "export Sales", JOptionPane.QUESTION_MESSAGE, null,
                             storeNames, storeNames[0]);
                     if (selected == null) {
@@ -732,11 +749,13 @@ public class Main {
                                 writer.close();
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                JOptionPane.showMessageDialog(null, "File not found, please try again",
+                                JOptionPane.showMessageDialog(null,
+                                        "File not found, please try again",
                                         "File not Found", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "There are no sales for this store.",
+                            JOptionPane.showMessageDialog(null,
+                                    "There are no sales for this store.",
                                     "No Sales",
                                     JOptionPane.INFORMATION_MESSAGE); // displays error message
                         }
@@ -762,7 +781,8 @@ public class Main {
                             "4. View your shopping cart", "5. Export Purchase History CSV", "6. Log Out"};
                     String optionsString;
                     optionsString = (String) JOptionPane.showInputDialog(null,
-                            "What would you like to do?", "Customer Account", JOptionPane.QUESTION_MESSAGE,
+                            "What would you like to do?", "Customer Account",
+                            JOptionPane.QUESTION_MESSAGE,
                             null, options, options[0]);
                     if (optionsString == null) {
                         leave = true;
@@ -788,7 +808,8 @@ public class Main {
                         storeNamesArray[storeNames.indexOf(temp)] = temp;
                         System.out.println(temp);
                     }
-                    String selected = (String) JOptionPane.showInputDialog(null, "Select a store to view products",
+                    String selected = (String) JOptionPane.showInputDialog(null,
+                            "Select a store to view products",
                             "View Products", JOptionPane.QUESTION_MESSAGE, null,
                             storeNamesArray, storeNamesArray[0]);
                     if (selected == null) {
@@ -804,7 +825,8 @@ public class Main {
                         for (String temp : productNames) {
                             productNamesArray[productNames.indexOf(temp)] = temp;
                         }
-                        String selectedProduct = (String) JOptionPane.showInputDialog(null, "Select a product to view",
+                        String selectedProduct = (String) JOptionPane.showInputDialog(null,
+                                "Select a product to view",
                                 "View Product", JOptionPane.QUESTION_MESSAGE, null,
                                 productNamesArray, productNamesArray[0]);
                         if (selectedProduct == null) {
@@ -833,7 +855,8 @@ public class Main {
                                 String addToCartString;
                                 addToCartString = (String) JOptionPane.showInputDialog(null,
                                         "What would you like to do?", "Customer Account",
-                                        JOptionPane.QUESTION_MESSAGE, null, addToCartOptions, addToCartOptions[0]);
+                                        JOptionPane.QUESTION_MESSAGE, null, addToCartOptions,
+                                        addToCartOptions[0]);
                                 if (addToCartString == null) {
                                     leave = true;
                                     return;
@@ -863,7 +886,8 @@ public class Main {
                                         JOptionPane.showMessageDialog(null, "Added to cart!",
                                                 "Added to cart", JOptionPane.INFORMATION_MESSAGE);
                                     } else {
-                                        JOptionPane.showMessageDialog(null, "Failed to add to cart!",
+                                        JOptionPane.showMessageDialog(null,
+                                                "Failed to add to cart!",
                                                 "Failed to add to cart", JOptionPane.ERROR_MESSAGE);
                                     }
                                 }
@@ -891,11 +915,13 @@ public class Main {
                                                 "Purchased", JOptionPane.INFORMATION_MESSAGE);
                                     } else if (purchaseNowResponse.equals("falseMQ")) {
                                         int maxQuantity = (Integer) ois.readObject();
-                                        JOptionPane.showMessageDialog(null, "Failed to purchase! Above max quantity " +
+                                        JOptionPane.showMessageDialog(null,
+                                                "Failed to purchase! Above max quantity " +
                                                         "of " + maxQuantity + "!",
                                                 "Failed to purchase", JOptionPane.ERROR_MESSAGE);
                                     } else {
-                                        JOptionPane.showMessageDialog(null, "Failed to purchase!",
+                                        JOptionPane.showMessageDialog(null,
+                                                "Failed to purchase!",
                                                 "Failed to purchase", JOptionPane.ERROR_MESSAGE);
                                     }
                                 }
@@ -937,7 +963,8 @@ public class Main {
                         for (String temp : storeNames) {
                             storeNamesArray[storeNames.indexOf(temp)] = temp;
                         }
-                        String selected = (String) JOptionPane.showInputDialog(null, "Select a store to view products",
+                        String selected = (String) JOptionPane.showInputDialog(null,
+                                "Select a store to view products",
                                 "View Products", JOptionPane.QUESTION_MESSAGE, null,
                                 storeNamesArray, storeNamesArray[0]);
                         if (selected == null) {
@@ -983,7 +1010,8 @@ public class Main {
                                     String addToCartString;
                                     addToCartString = (String) JOptionPane.showInputDialog(null,
                                             "What would you like to do?", "Customer Account",
-                                            JOptionPane.QUESTION_MESSAGE, null, addToCartOptions, addToCartOptions[0]);
+                                            JOptionPane.QUESTION_MESSAGE, null, addToCartOptions,
+                                            addToCartOptions[0]);
                                     if (addToCartString == null) {
                                         leave = true;
                                         return;
@@ -1000,7 +1028,8 @@ public class Main {
                                     }
                                     quantityToCart = Integer.parseInt(quantityToCartString);
                                     if (quantityToCart > quantity) {
-                                        JOptionPane.showMessageDialog(null, "Not enough in stock!",
+                                        JOptionPane.showMessageDialog(null,
+                                                "Not enough in stock!",
                                                 "Not enough in stock", JOptionPane.ERROR_MESSAGE);
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
@@ -1010,10 +1039,12 @@ public class Main {
                                         oos.flush();
                                         Boolean addToCartResponse = (Boolean) ois.readObject();
                                         if (addToCartResponse) {
-                                            JOptionPane.showMessageDialog(null, "Added to cart!",
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Added to cart!",
                                                     "Added to cart", JOptionPane.INFORMATION_MESSAGE);
                                         } else {
-                                            JOptionPane.showMessageDialog(null, "Failed to add to cart!",
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Failed to add to cart!",
                                                     "Failed to add to cart", JOptionPane.ERROR_MESSAGE);
                                         }
                                     }
@@ -1027,12 +1058,13 @@ public class Main {
                                     }
                                     quantityToCart = Integer.parseInt(quantityToCartString);
                                     if (quantityToCart > quantity) {
-                                        JOptionPane.showMessageDialog(null, "Not enough in stock!",
+                                        JOptionPane.showMessageDialog(null,
+                                                "Not enough in stock!",
                                                 "Not enough in stock", JOptionPane.ERROR_MESSAGE);
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
-                                                "buyCust").put("storeName", selected).put("productID",
-                                                productID).put("quantity", quantityToCart)
+                                                        "buyCust").put("storeName", selected).put("productID",
+                                                        productID).put("quantity", quantityToCart)
                                                 .put("customerID", userID)).toString());
                                         oos.flush();
                                         String purchaseNowResponse = (String) ois.readObject();
@@ -1046,7 +1078,8 @@ public class Main {
                                                             "of " + maxQuantity + "!",
                                                     "Failed to purchase", JOptionPane.ERROR_MESSAGE);
                                         } else {
-                                            JOptionPane.showMessageDialog(null, "Failed to purchase!",
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Failed to purchase!",
                                                     "Failed to purchase", JOptionPane.ERROR_MESSAGE);
                                         }
                                     }
@@ -1065,7 +1098,8 @@ public class Main {
                     } else if (response1 == 2) {
                         boolean leave1 = false;
                         String productSearch = JOptionPane.showInputDialog(null,
-                                "Enter a product name to search", "Customer Account", JOptionPane.QUESTION_MESSAGE);
+                                "Enter a product name to search", "Customer Account",
+                                JOptionPane.QUESTION_MESSAGE);
                         if (productSearch == null) {
                             leave = true;
                             return;
@@ -1081,7 +1115,8 @@ public class Main {
                                 psNamesArray[i] = psNames.get(i);
                             }
                             String selectedProduct = (String) JOptionPane.showInputDialog(null,
-                                    "Select a product", "Search Product", JOptionPane.QUESTION_MESSAGE, null,
+                                    "Select a product", "Search Product", JOptionPane.QUESTION_MESSAGE,
+                                    null,
                                     psNamesArray, psNamesArray[0]);
                             if (selectedProduct == null) {
                                 leave = true;
@@ -1114,7 +1149,8 @@ public class Main {
                                     String addToCartString;
                                     addToCartString = (String) JOptionPane.showInputDialog(null,
                                             "What would you like to do?", "Customer Account",
-                                            JOptionPane.QUESTION_MESSAGE, null, addToCartOptions, addToCartOptions[0]);
+                                            JOptionPane.QUESTION_MESSAGE, null, addToCartOptions,
+                                            addToCartOptions[0]);
                                     if (addToCartString == null) {
                                         leave = true;
                                         return;
@@ -1132,21 +1168,24 @@ public class Main {
                                     quantityToCart = Integer.parseInt(quantityToCartString);
                                     System.out.println("Test 1");
                                     if (quantityToCart > quantity) {
-                                        JOptionPane.showMessageDialog(null, "Not enough in stock!",
+                                        JOptionPane.showMessageDialog(null,
+                                                "Not enough in stock!",
                                                 "Not enough in stock", JOptionPane.ERROR_MESSAGE);
                                         System.out.println("Test too many");
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
-                                                "addToCartCust").put("storeName", selected).put("productID",
-                                                productID).put("quantity", quantityToCart)
+                                                        "addToCartCust").put("storeName", selected).put("productID",
+                                                        productID).put("quantity", quantityToCart)
                                                 .put("customerID", userID)).toString());
                                         oos.flush();
                                         Boolean addToCartResponse = (Boolean) ois.readObject();
                                         if (addToCartResponse) {
-                                            JOptionPane.showMessageDialog(null, "Added to cart!",
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Added to cart!",
                                                     "Added to cart", JOptionPane.INFORMATION_MESSAGE);
                                         } else {
-                                            JOptionPane.showMessageDialog(null, "Failed to add to cart!",
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Failed to add to cart!",
                                                     "Failed to add to cart", JOptionPane.ERROR_MESSAGE);
                                         }
                                     }
@@ -1165,8 +1204,8 @@ public class Main {
                                                 "Not enough in stock", JOptionPane.ERROR_MESSAGE);
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
-                                                "buyCust").put("storeName", selected).put("productID",
-                                                productID).put("quantity", quantityToCart)
+                                                        "buyCust").put("storeName", selected).put("productID",
+                                                        productID).put("quantity", quantityToCart)
                                                 .put("customerID", userID)).toString());
                                         oos.flush();
                                         String purchaseNowResponse = (String) ois.readObject();
@@ -1236,7 +1275,8 @@ public class Main {
                             System.out.println(productName + "is in the cart");
                             String quantity = inCart[1];
                             String price = inCart[2];
-                            String ret = String.format("Product Name: " + productName + "\n" + "Quantity: " + quantity +
+                            String ret = String.format("Product Name: " + productName + "\n" +
+                                    "Quantity: " + quantity +
                                     "\n" + "Price: $" + price);
                             customerCartArray[i] = ret;
                         }
@@ -1313,7 +1353,8 @@ public class Main {
                                 }
                             }
                             String quantityToRemoveString = JOptionPane.showInputDialog(null,
-                                    "How many would you like to have now? (Enter 0 to complete remove item) " +
+                                    "How many would you like to have now?" +
+                                            " (Enter 0 to complete remove item) " +
                                             "Current quantity: " + currentQuantity);
                             if (quantityToRemoveString == null) {
                                 leave = true;
@@ -1321,9 +1362,9 @@ public class Main {
                             }
                             int quantityToRemove = Integer.parseInt(quantityToRemoveString);
                             JSONObject removeItem = new JSONObject().put("userKey", "Customer").put("actionKey",
-                                    "removeItem").put("customerID", userID).put("productName", selected)
+                                            "removeItem").put("customerID", userID).put("productName", selected)
                                     .put("quantityToRemove",
-                                    quantityToRemove);
+                                            quantityToRemove);
                             oos.writeObject(removeItem.toString());
                             oos.flush();
                             Boolean removeItemResponse = (Boolean) ois.readObject();

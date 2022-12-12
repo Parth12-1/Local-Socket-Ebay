@@ -452,7 +452,6 @@ public class Server extends Thread {
                         break;
 
 
-
                     case "Customer": // Customer
                         switch (jsonObject.getString("actionKey")) {
                             case "getStoresCust":
@@ -652,7 +651,7 @@ public class Server extends Thread {
                                                     }
                                                 }
                                             }
-                                        } //TODO: what if product deleted
+                                        }
                                         String productName2 = purchased.getName();
                                         int quantity = purchaseHist1.getQuantity();
                                         double price = purchaseHist1.getPrice();
@@ -791,7 +790,6 @@ public class Server extends Thread {
                             oos.flush();
                         }
                         break;
-
 
 
                     default:

@@ -63,7 +63,8 @@ public class Stores implements Serializable {
         this.storeProducts = storeProducts;
     }
 
-    public void addStoreProduct(int productID, String name, String description, int quantity, double price, int orderLimit) {
+    public void addStoreProduct(int productID, String name, String description, int quantity, double price,
+                                int orderLimit) {
         storeProducts.add(new Products(productID, name, description, quantity, price, orderLimit));
     }
 
