@@ -7,6 +7,13 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import org.json.JSONObject;
 
+/**
+ * Main.java
+ * This class description is mentioned in the README.md.
+ *
+ * @author Parth Shah, Pranav Konda, Aarush Sachdeva
+ * @version December 10th, 2022
+ */
 public class Main {
     static int userID;
     static int userType;
