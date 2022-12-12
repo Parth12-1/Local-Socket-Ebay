@@ -75,7 +75,7 @@ public class Main {
                 boolean valid = true;
                 if (email == null || password == null) {
                     return;
-                } //TODO this is still allowing the user to create account
+                }
                 //int userType = 0;
                 oos.writeObject((new JSONObject().put("userKey", "Login").put("email", email).put("password",
                         password)).toString());
@@ -218,7 +218,8 @@ public class Main {
                                         "3. Delete a Product",
                                         "4. Go Back"};
                                 /*ArrayList<Products> productArrayList = store.getStoreProducts();*/
-                                String option2String = (String) JOptionPane.showInputDialog(null, "What is your choice?",
+                                String option2String = (String) JOptionPane.showInputDialog(null,
+                                        "What is your choice?",
                                         "Store: " + selected, JOptionPane.QUESTION_MESSAGE,
                                         null, optionChoices, optionChoices[0]);
                                 if (option2String == null) {
@@ -265,9 +266,6 @@ public class Main {
                                         int option3;
                                         do {
                                             String[] options = {"1. Edit Product", "2. Go Back"};
-                                            /*System.out.println("1. Edit Product"); //TEST
-                                            System.out.println("2. Delete Product"); //TODO: Need to see what to do if in cart
-                                            System.out.println("3. Go Back");*/
                                             String option3String = (String) JOptionPane.showInputDialog(
                                                     null,
                                                     "What would you like to do with this product?",
@@ -287,9 +285,10 @@ public class Main {
                                             }
                                         } while (option3 < 1 || option3 > 3);
                                         if (option3 == 1) {
-                                            oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey",
-                                                            "1").put("1Key", "3").put("editStoreKey", "1").put("editProductKey",
-                                                            "info").put("userID", userID).put("storeName", selected)
+                                            oos.writeObject((new JSONObject().put("userKey", "Seller")
+                                                    .put("actionKey", "1").put("1Key", "3").put("editStoreKey", "1")
+                                                    .put("editProductKey", "info").put("userID", userID)
+                                                    .put("storeName", selected)
                                                     .put("productName", selectedProduct)).toString());
                                             oos.flush();
                                             String prejsonObjectInfo = (String) ois.readObject();
@@ -334,24 +333,17 @@ public class Main {
                                                     exit = true;
                                                     return;
                                                 }
-                                            }
-                                            /*System.out.println("Enter the new name of the product." +
-                                                    " Current name: " + product.getName());
-                                            String newName = scanner.nextLine();*/
-                                            else if (option3 == 2) {
+                                            } else if (option3 == 2) {
                                                 newDescription = JOptionPane.showInputDialog(null,
                                                         "Enter the new description of the product." +
                                                                 " Current description: " + description,
-                                                        "New Description of the Product", JOptionPane.QUESTION_MESSAGE);
+                                                        "New Description of the Product",
+                                                        JOptionPane.QUESTION_MESSAGE);
                                                 if (newDescription == null) {
                                                     exit = true;
                                                     return;
                                                 }
-                                            }
-                                            /*System.out.println("Enter the new description of the product." +
-                                                    " Current description: " + product.getDescription());
-                                            String newDescription = scanner.nextLine();*/
-                                            else if (option3 == 4) {
+                                            } else if (option3 == 4) {
                                                 String newQuantityString = JOptionPane.showInputDialog(null,
                                                         "Enter the new quantity of the product." +
                                                                 " Current quantity: " + quantity,
@@ -375,21 +367,24 @@ public class Main {
                                                 String newMaxQString = JOptionPane.showInputDialog(null,
                                                         "Enter the new max quantity of the " +
                                                                 "product (insert -1 for no max). Current " +
-                                                                "Max quantity:" +
-                                                                " " + maxQ,
-                                                        "New Quantity Limit of the Product", JOptionPane.QUESTION_MESSAGE);
+                                                                "Max quantity:" + " " + maxQ,
+                                                        "New Quantity Limit of the Product",
+                                                        JOptionPane.QUESTION_MESSAGE);
                                                 if (newMaxQString == null) {
                                                     exit = true;
                                                     return;
                                                 }
                                                 newMaxQ = Integer.parseInt(newMaxQString);
                                             }
-                                            oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey",
-                                                            "1").put("1Key", "3").put("editStoreKey", "1").put("editProductKey",
-                                                            "edit").put("userID", userID).put("storeName", selected).put("oldProductName", name)
+                                            oos.writeObject((new JSONObject().put("userKey", "Seller")
+                                                    .put("actionKey", "1").put("1Key", "3").put("editStoreKey", "1")
+                                                    .put("editProductKey", "edit").put("userID", userID)
+                                                    .put("storeName", selected).put("oldProductName", name)
                                                     .put("productName", selectedProduct).put("newName", newName)
-                                                    .put("productDescription", newDescription).put("productPrice", newPrice)
-                                                    .put("productQuantity", newQuantity).put("maxQuantity", newMaxQ)).toString());
+                                                    .put("productDescription", newDescription)
+                                                    .put("productPrice", newPrice)
+                                                    .put("productQuantity", newQuantity)
+                                                    .put("maxQuantity", newMaxQ)).toString());
                                             oos.flush();
                                             System.out.println("Product edited successfully!");
                                         }
@@ -490,15 +485,14 @@ public class Main {
                                         return;
                                     }
                                     if (selectedProduct != null) {
-                                        oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey",
-                                                        "1").put("1Key", "3").put("editStoreKey", "3").put("userID", userID)
-                                                .put("storeName", selected).put("productName", selectedProduct)).toString());
+                                        oos.writeObject((new JSONObject().put("userKey", "Seller")
+                                                .put("actionKey", "1").put("1Key", "3").put("editStoreKey", "3")
+                                                .put("userID", userID).put("storeName", selected)
+                                                .put("productName", selectedProduct)).toString());
                                         oos.flush();
                                     }
                                 }
                             }
-
-
                         } else {
                             JOptionPane.showMessageDialog(null, "Store doesn't Exist. please try again!",
                                     "Store not found", JOptionPane.WARNING_MESSAGE);
@@ -508,8 +502,8 @@ public class Main {
                                 "Warning", JOptionPane.WARNING_MESSAGE);
                     }
                 } else if (option == 2) {
-                    String newStore = JOptionPane.showInputDialog(null, "What is the name of the new store you would " +
-                                    "like to create?",
+                    String newStore = JOptionPane.showInputDialog(null,
+                            "What is the name of the new store you would " + "like to create?",
                             "New Store", JOptionPane.QUESTION_MESSAGE);
                     if (newStore == null) {
                         exit = true;
@@ -572,8 +566,8 @@ public class Main {
                             return;
                         }
                         if (selected != null) {
-                            oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey", "4").put("userID",
-                                    userID).put("storeName", selected)).toString());
+                            oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey", "4")
+                                    .put("userID", userID).put("storeName", selected)).toString());
                             oos.flush();
                             ArrayList<String> sales = (ArrayList<String>) ois.readObject();
                             if (sales.size() > 1) {
@@ -581,7 +575,8 @@ public class Main {
                                 for (String temp : sales) {
                                     salesArray[sales.indexOf(temp)] = temp;
                                 }
-                                JOptionPane.showMessageDialog(null, salesArray, "Sales", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(null, salesArray,
+                                        "Sales", JOptionPane.INFORMATION_MESSAGE);
                             } else {
                                 JOptionPane.showMessageDialog(null, "There are no sales for this store.",
                                         "No Sales",
@@ -645,7 +640,8 @@ public class Main {
                         }
                         if (success) {
                             if (storeProducts.size() > 0) {
-                                oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey", "5").put("userID",
+                                oos.writeObject((new JSONObject().put("userKey", "Seller").put("actionKey", "5")
+                                        .put("userID",
                                         userID).put("objectSize", storeProducts.size())).toString());
                                 oos.flush();
                                 for (JSONObject temp : storeProducts) {
@@ -859,7 +855,8 @@ public class Main {
                                 } else {
                                     oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
                                             "addToCartCust").put("storeName", selected).put("productID",
-                                            productID).put("quantity", quantityToCart).put("customerID", userID)).toString());
+                                            productID).put("quantity", quantityToCart).put("customerID", userID))
+                                            .toString());
                                     oos.flush();
                                     Boolean addToCartResponse = (Boolean) ois.readObject();
                                     if (addToCartResponse) {
@@ -885,7 +882,8 @@ public class Main {
                                 } else {
                                     oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
                                             "buyCust").put("storeName", selected).put("productID",
-                                            productID).put("quantity", quantityToCart).put("customerID", userID)).toString());
+                                            productID).put("quantity", quantityToCart).put("customerID", userID))
+                                            .toString());
                                     oos.flush();
                                     String purchaseNowResponse = (String) ois.readObject();
                                     if (purchaseNowResponse.equals("true")) {
@@ -955,7 +953,8 @@ public class Main {
                             for (String temp : productNames) {
                                 productNamesArray[productNames.indexOf(temp)] = temp;
                             }
-                            String selectedProduct = (String) JOptionPane.showInputDialog(null, "Select a product to view",
+                            String selectedProduct = (String) JOptionPane.showInputDialog(null,
+                                    "Select a product to view",
                                     "View Product", JOptionPane.QUESTION_MESSAGE, null,
                                     productNamesArray, productNamesArray[0]);
                             if (selectedProduct == null) {
@@ -1006,7 +1005,8 @@ public class Main {
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
                                                 "addToCartCust").put("storeName", selected).put("productID",
-                                                productID).put("quantity", quantityToCart).put("customerID", userID)).toString());
+                                                productID).put("quantity", quantityToCart).put("customerID", userID))
+                                                .toString());
                                         oos.flush();
                                         Boolean addToCartResponse = (Boolean) ois.readObject();
                                         if (addToCartResponse) {
@@ -1032,7 +1032,8 @@ public class Main {
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
                                                 "buyCust").put("storeName", selected).put("productID",
-                                                productID).put("quantity", quantityToCart).put("customerID", userID)).toString());
+                                                productID).put("quantity", quantityToCart)
+                                                .put("customerID", userID)).toString());
                                         oos.flush();
                                         String purchaseNowResponse = (String) ois.readObject();
                                         if (purchaseNowResponse.equals("true")) {
@@ -1040,7 +1041,8 @@ public class Main {
                                                     "Purchased", JOptionPane.INFORMATION_MESSAGE);
                                         } else if (purchaseNowResponse.equals("falseMQ")) {
                                             int maxQuantity = (Integer) ois.readObject();
-                                            JOptionPane.showMessageDialog(null, "Failed to purchase! Above max quantity " +
+                                            JOptionPane.showMessageDialog(null,
+                                                    "Failed to purchase! Above max quantity " +
                                                             "of " + maxQuantity + "!",
                                                     "Failed to purchase", JOptionPane.ERROR_MESSAGE);
                                         } else {
@@ -1087,7 +1089,8 @@ public class Main {
                             }
                             if (selectedProduct != null) {
                                 oos.writeObject((new JSONObject().put("userKey", "Customer").put(
-                                        "actionKey", "getStorefromProduct").put("productName", selectedProduct)).toString());
+                                        "actionKey", "getStorefromProduct").put("productName", selectedProduct))
+                                        .toString());
                                 oos.flush();
                                 String selected = (String) ois.readObject();
                                 oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
@@ -1127,15 +1130,16 @@ public class Main {
                                         return;
                                     }
                                     quantityToCart = Integer.parseInt(quantityToCartString);
-                                    System.out.println("Test 1"); //TODO:Remove
+                                    System.out.println("Test 1");
                                     if (quantityToCart > quantity) {
                                         JOptionPane.showMessageDialog(null, "Not enough in stock!",
                                                 "Not enough in stock", JOptionPane.ERROR_MESSAGE);
-                                        System.out.println("Test too many"); //TODO:Remove
+                                        System.out.println("Test too many");
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
                                                 "addToCartCust").put("storeName", selected).put("productID",
-                                                productID).put("quantity", quantityToCart).put("customerID", userID)).toString());
+                                                productID).put("quantity", quantityToCart)
+                                                .put("customerID", userID)).toString());
                                         oos.flush();
                                         Boolean addToCartResponse = (Boolean) ois.readObject();
                                         if (addToCartResponse) {
@@ -1156,12 +1160,14 @@ public class Main {
                                     }
                                     quantityToCart = Integer.parseInt(quantityToCartString);
                                     if (quantityToCart > quantity) {
-                                        JOptionPane.showMessageDialog(null, "Not enough in stock!",
+                                        JOptionPane.showMessageDialog(null,
+                                                "Not enough in stock!",
                                                 "Not enough in stock", JOptionPane.ERROR_MESSAGE);
                                     } else {
                                         oos.writeObject((new JSONObject().put("userKey", "Customer").put("actionKey",
                                                 "buyCust").put("storeName", selected).put("productID",
-                                                productID).put("quantity", quantityToCart).put("customerID", userID)).toString());
+                                                productID).put("quantity", quantityToCart)
+                                                .put("customerID", userID)).toString());
                                         oos.flush();
                                         String purchaseNowResponse = (String) ois.readObject();
                                         if (purchaseNowResponse.equals("true")) {
@@ -1218,7 +1224,6 @@ public class Main {
                         }
                     }
                 } else if (response == 4) { //view shopping cart
-                    System.out.println("Test 1"); //TODO:Remove
                     oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
                             "testCart").put("customerID", userID).toString());
                     oos.flush();
@@ -1259,7 +1264,8 @@ public class Main {
                             if (success.equals("true")) {
                             } else {
                                 JOptionPane.showMessageDialog(null, "Failed to Purchase all!",
-                                        "Failed to purchase ALL items, look at max order quantities and quanitity of " +
+                                        "Failed to purchase ALL items, look at max order quantities and " +
+                                                "quanitity of " +
                                                 "products", JOptionPane.ERROR_MESSAGE);
                             }
                             /*oos.writeObject(new JSONObject().put("userKey", "Customer").put("actionKey",
@@ -1315,7 +1321,8 @@ public class Main {
                             }
                             int quantityToRemove = Integer.parseInt(quantityToRemoveString);
                             JSONObject removeItem = new JSONObject().put("userKey", "Customer").put("actionKey",
-                                    "removeItem").put("customerID", userID).put("productName", selected).put("quantityToRemove",
+                                    "removeItem").put("customerID", userID).put("productName", selected)
+                                    .put("quantityToRemove",
                                     quantityToRemove);
                             oos.writeObject(removeItem.toString());
                             oos.flush();

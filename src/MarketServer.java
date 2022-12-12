@@ -1,8 +1,5 @@
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import org.json.JSONObject;
 
 /**
  * marketServer.java
@@ -11,7 +8,7 @@ import org.json.JSONObject;
  * @author Parth Shah, Pranav Konda, Aarush Sachdeva
  * @version December 10th, 2022
  */
-public class marketServer {
+public class MarketServer {
     public static void main(String[] args) throws Exception {
         // Create a server socket
         ServerSocket serverSocket = new ServerSocket(1000);

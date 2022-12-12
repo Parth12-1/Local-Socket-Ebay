@@ -12,7 +12,7 @@ The program should consist of 11 classes:
 - Cart.java
 - Customer.java
 - Main.java
-- marketServer.java
+- MarketServer.java
 - Products.java
 - ProductSales.java
 - Sales.java
@@ -36,10 +36,11 @@ The following group member submitted the following items:
 
 # Detailed Description of each Class
 
-## marketServer.java
-The markerServer.java main method starts a ServerSocket and allows multiple clients to run on different threads concurrently.
+## MarketServer.java
+The MarketServer.java main method starts a ServerSocket and allows multiple clients to run on different threads 
+concurrently.
 
-First, the marketServer.java class creates a ServerSocket.
+First, the MarketServer.java class creates a ServerSocket.
 
 Then, it accepts a socket connection from multiple Clients (Main.java) (through a loop).
 
