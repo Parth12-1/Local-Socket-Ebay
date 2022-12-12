@@ -7,6 +7,13 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 
+/**
+ * Server.java
+ * This class description is mentioned in the README.md.
+ *
+ * @author Parth Shah, Pranav Konda, Aarush Sachdeva
+ * @version December 10th, 2022
+ */
 public class Server extends Thread {
     private static ArrayList<Seller> sellers = new ArrayList<Seller>();
     private static ArrayList<Customer> customers = new ArrayList<Customer>();
