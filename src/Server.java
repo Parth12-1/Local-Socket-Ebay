@@ -59,7 +59,7 @@ public class Server extends Thread {
                 JSONObject jsonObject = new JSONObject(prejsonObject);
                 //System.out.println(jsonObject.toString());
                 switch (jsonObject.getString("userKey")) {
-//TODO///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                     case "Login": // Login
                         // Check if user exists, send back userID and null if no exist
                         String emailL = jsonObject.getString("email");
@@ -73,7 +73,7 @@ public class Server extends Thread {
                             oos.flush();
                         }
                         break;
-//TODO///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                     case "Signup": // Signup
                         // Create a user, send back userID , should have received a choice for type
                         String emailS = jsonObject.getString("email");
@@ -91,7 +91,7 @@ public class Server extends Thread {
                             oos.flush();
                         }
                         break;
-//TODO///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
                     case "Seller": // Seller
                         switch (jsonObject.getString("actionKey")) {
@@ -104,12 +104,18 @@ public class Server extends Thread {
                                                     case "edit": // Editproduct
                                                         // send back if the product was added or not
                                                         int userID1 = jsonObject.getInt("userID");
-                                                        String storeName1 = jsonObject.getString("storeName");
-                                                        String oldProductName = jsonObject.getString("oldProductName");
-                                                        String productName1 = jsonObject.getString("newName");
-                                                        String productDescription = jsonObject.getString("productDescription");
-                                                        double productPrice = jsonObject.getDouble("productPrice");
-                                                        int productQuantity = jsonObject.getInt("productQuantity");
+                                                        String storeName1 =
+                                                                jsonObject.getString("storeName");
+                                                        String oldProductName =
+                                                                jsonObject.getString("oldProductName");
+                                                        String productName1 =
+                                                                jsonObject.getString("newName");
+                                                        String productDescription =
+                                                                jsonObject.getString("productDescription");
+                                                        double productPrice =
+                                                                jsonObject.getDouble("productPrice");
+                                                        int productQuantity =
+                                                                jsonObject.getInt("productQuantity");
                                                         int maxQuantity = jsonObject.getInt("maxQuantity");
                                                         Stores stores1 = null;
                                                         Seller seller1 = null;
@@ -170,13 +176,20 @@ public class Server extends Thread {
                                                 }
                                                 break;
                                             case "2": // add products
-                                                int userID = jsonObject.getInt("userID");
-                                                String storeName = jsonObject.getString("storeName");
-                                                String productName = jsonObject.getString("productName");
-                                                String productDescription = jsonObject.getString("productDescription");
-                                                double productPrice = jsonObject.getDouble("productPrice");
-                                                int productQuantity = jsonObject.getInt("productQuantity");
-                                                int maxQuantity = jsonObject.getInt("maxQuantity");
+                                                int userID =
+                                                        jsonObject.getInt("userID");
+                                                String storeName =
+                                                        jsonObject.getString("storeName");
+                                                String productName =
+                                                        jsonObject.getString("productName");
+                                                String productDescription =
+                                                        jsonObject.getString("productDescription");
+                                                double productPrice =
+                                                        jsonObject.getDouble("productPrice");
+                                                int productQuantity =
+                                                        jsonObject.getInt("productQuantity");
+                                                int maxQuantity =
+                                                        jsonObject.getInt("maxQuantity");
                                                 Stores stores = null;
                                                 Seller seller = null;
                                                 for (Seller s : sellers) {
@@ -202,7 +215,8 @@ public class Server extends Thread {
                                                     }
                                                 }
                                                 pId++;
-                                                System.out.println("ID: " + pId + "," + productName + productDescription +
+                                                System.out.println("ID: " + pId + "," + productName +
+                                                        productDescription +
                                                         productQuantity + productPrice + maxQuantity);
                                                 stores.addStoreProduct(pId, productName, productDescription,
                                                         productQuantity, productPrice, maxQuantity);
@@ -306,9 +320,11 @@ public class Server extends Thread {
                                 ArrayList<String> saleStrings = new ArrayList<>();
                                 saleStrings.add("Revenue: $" + sales.getTotalSales());
                                 for (ProductSales productSales : saleList) {
-                                    saleStrings.add("Customer ID: " + productSales.getCustomerId() + " Product Name:" +
+                                    saleStrings.add("Customer ID: " + productSales.getCustomerId() +
+                                            " Product Name:" +
                                             " " +
-                                            productSales.getProductName() + " Quantity: " + productSales.getQuantity() +
+                                            productSales.getProductName() + " Quantity: " +
+                                            productSales.getQuantity() +
                                             " Price: " +
                                             productSales.getPrice());
                                 }
@@ -366,10 +382,12 @@ public class Server extends Thread {
                                             }
                                         }
                                         productId++;
-                                        System.out.println("ID: " + productId + "," + productName + productDescription +
+                                        System.out.println("ID: " + productId + "," + productName +
+                                                productDescription +
                                                 productQuantity + productPrice + maxQuantity);
 
-                                        store.addStoreProduct(productId, productName, productDescription, productQuantity, productPrice,
+                                        store.addStoreProduct(productId, productName, productDescription,
+                                                productQuantity, productPrice,
                                                 maxQuantity);
 
                                     }
@@ -434,7 +452,7 @@ public class Server extends Thread {
                         break;
 
 
-//TODO///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                     case "Customer": // Customer
                         switch (jsonObject.getString("actionKey")) {
                             case "getStoresCust":
@@ -554,10 +572,13 @@ public class Server extends Thread {
                                 if (product3 != null) {
                                     int sellerID = store3.getSellerID();
                                     if (product3.getQuantity() >= quantity3) {
-                                        if (product3.getOrderLimit() >= quantity3 || product3.getOrderLimit() == -1) {
-                                            customer3.addPurchase(sellerID, store3.getStoreID(), productID3, quantity3,
+                                        if (product3.getOrderLimit() >= quantity3 ||
+                                                product3.getOrderLimit() == -1) {
+                                            customer3.addPurchase(sellerID, store3.getStoreID(),
+                                                    productID3, quantity3,
                                                     product3.getPrice());
-                                            store3.addSale(productID3, quantity3, product3.getPrice(), customer3.getCustId(),
+                                            store3.addSale(productID3, quantity3, product3.getPrice(),
+                                                    customer3.getCustId(),
                                                     product3.getName());
                                             oos.writeObject("true");
                                             oos.flush();
@@ -772,7 +793,7 @@ public class Server extends Thread {
                         break;
 
 
-                    //TODO///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                     default:
                         break;
                 }
@@ -790,7 +811,7 @@ public class Server extends Thread {
                 runAgain = false;
             }
         } while (runAgain);
-        //Write into database and read database EVERYWHERE. //TODO THIS
+        //Write into database and read database EVERYWHERE.
         writeCustomer();
         writeSeller();
         try {
@@ -960,7 +981,8 @@ public class Server extends Thread {
             int storeID = productStore.getStoreID();
             int sellerID = productStore.getSellerID();
             int quantity = cart.getQuantity();
-            if (quantity > 0 && quantity <= products.getQuantity() && (products.getOrderLimit() >= quantity || products.getOrderLimit() == -1)) {
+            if (quantity > 0 && quantity <= products.getQuantity() && (products.getOrderLimit() >=
+                    quantity || products.getOrderLimit() == -1)) {
                 userC.addPurchase(sellerID, storeID, productID, quantity,
                         productPrice);
                 productStore.addSale(productID, quantity, productPrice, userC.getCustId(), products.getName());
