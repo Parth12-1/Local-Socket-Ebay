@@ -1,6 +1,13 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Customer.java
+ * This class description is mentioned in the README.md.
+ *
+ * @author Parth Shah, Pranav Konda, Aarush Sachdeva
+ * @version December 10th, 2022
+ */
 public class Customer implements Serializable {
     int custId;
     ArrayList<Cart> carts = new ArrayList<>();
