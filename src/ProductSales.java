@@ -1,5 +1,12 @@
 import java.io.Serializable;
 
+/**
+ * ProductSales.java
+ * This class description is mentioned in the README.md.
+ *
+ * @author Parth Shah, Pranav Konda, Aarush Sachdeva
+ * @version December 10th, 2022
+ */
 public class ProductSales implements Serializable {
     int productID;
     int quantity;
