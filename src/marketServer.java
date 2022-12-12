@@ -4,6 +4,13 @@ import java.net.Socket;
 
 import org.json.JSONObject;
 
+/**
+ * marketServer.java
+ * This class description is mentioned in the README.md.
+ *
+ * @author Parth Shah, Pranav Konda, Aarush Sachdeva
+ * @version December 10th, 2022
+ */
 public class marketServer {
     public static void main(String[] args) throws Exception {
         // Create a server socket
