@@ -547,7 +547,7 @@ public class Server extends Thread {
                                 if (product3 != null) {
                                     int sellerID = store3.getSellerID();
                                     if (product3.getQuantity() >= quantity3) {
-                                        if (product3.getOrderLimit() >= quantity3) {
+                                        if (product3.getOrderLimit() >= quantity3 || product3.getOrderLimit() == -1) {
                                             customer3.addPurchase(sellerID, store3.getStoreID(), productID3, quantity3,
                                                     product3.getPrice());
                                             store3.addSale(productID3, quantity3, product3.getPrice(), customer3.getCustId(),
@@ -954,7 +954,7 @@ public class Server extends Thread {
             int storeID = productStore.getStoreID();
             int sellerID = productStore.getSellerID();
             int quantity = cart.getQuantity();
-            if (quantity > 0 && quantity <= products.getQuantity() && products.getOrderLimit() >= quantity) {
+            if (quantity > 0 && quantity <= products.getQuantity() && (products.getOrderLimit() >= quantity || products.getOrderLimit() == -1)) {
                 userC.addPurchase(sellerID, storeID, productID, quantity,
                         productPrice);
                 productStore.addSale(productID, quantity, productPrice, userC.getCustId(), products.getName());
