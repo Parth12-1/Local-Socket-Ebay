@@ -166,9 +166,9 @@ public class Main {
             boolean exit = false;
             do {
                 do {
-                    String[] options = {"1. Edit my Stores", "2. Make a New Store", "3. Delete a Store",
-                            "4. View Sales", "5. Import CSV for Stores", "6. Export CSV for Stores",
-                            "7. Export CSV for Sales", "8. Log Out"};
+                    String[] options = {"1. Edit my Stores", "2. Make a New Store", "3. Delete " +
+                            "a Store", "4. View Sales", "5. Import CSV for Stores", "6. Export CSV " +
+                            "for Stores", "7. Export CSV for Sales", "8. Log Out"};
                     String optionString;
                     optionString = (String) JOptionPane.showInputDialog(null,
                             "What would you like to do?",
@@ -214,10 +214,8 @@ public class Main {
                         if (selected != null) {
                             int option2;
                             do {
-                                String[] optionChoices = {"1. Edit Products",
-                                        "2. Add a Product",
-                                        "3. Delete a Product",
-                                        "4. Go Back"};
+                                String[] optionChoices = {"1. Edit Products", "2. Add a Product", "3. D" +
+                                        "elete a Product", "4. Go Back"};
                                 /*ArrayList<Products> productArrayList = store.getStoreProducts();*/
                                 String option2String = (String) JOptionPane.showInputDialog(null,
                                         "What is your choice?",
@@ -305,8 +303,8 @@ public class Main {
                                             int newQuantity = quantity;
                                             int newMaxQ = maxQ;
                                             do {
-                                                String[] options = {"1. Edit Name", "2. Edit Description",
-                                                        "3. Edit Price", "4. Edit Quantity", "5. Edit Max Quantity"};
+                                                String[] options = {"1. Edit Name", "2. Edit Description", "3. " +
+                                                        "Edit Price", "4. Edit Quantity", "5. Edit Max Quantity"};
                                                 String option3String = (String) JOptionPane.showInputDialog(
                                                         null,
                                                         "What would you like to edit with this product?",
@@ -777,8 +775,8 @@ public class Main {
             boolean leave = false;
             do {
                 do {
-                    String[] options = {"1. View product listings", "2. Search...", "3. View your purchase history",
-                            "4. View your shopping cart", "5. Export Purchase History CSV", "6. Log Out"};
+                    String[] options = {"1. View product listings", "2. Search...", "3. View your purchase his" +
+                            "tory", "4. View your shopping cart", "5. Export Purchase History CSV", "6. Log Out"};
                     String optionsString;
                     optionsString = (String) JOptionPane.showInputDialog(null,
                             "What would you like to do?", "Customer Account",
