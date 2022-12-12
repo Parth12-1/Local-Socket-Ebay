@@ -718,7 +718,6 @@ public class Server extends Thread {
                                 oos.flush();
                                 break;
                             case "buyCart":
-                                System.out.println("inniiiittt to win ittt");
                                 int customerID6 = jsonObject.getInt("customerID");
                                 Customer customer6 = getCust(customerID6);
                                 oos.writeObject(purchaseCart(customer6));
