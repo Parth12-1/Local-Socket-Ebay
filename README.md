@@ -1,8 +1,5 @@
-# CS180-Project-5
-Project 5 CS180 - L28
+# Ebay Project
 
-# Project 5:
-Project 5 consists of PJ-4 (required 4 Components (3 Core and 1 selection) + 1 extra component), but with concurrency, Network IO, and a GUI.
 
 # Instructions
 Open the marketServer.java and run the main method.
@@ -29,12 +26,6 @@ Also, please make sure that the External Libraries openCSV and JSON are imported
 
 While running the program, make sure there isn't a space character at the end of the input, and that the correct inputs are inserted\
 example: [Hello] but not [Hello ].
-
-# Submission List
-The following group member submitted the following items:
-- Parth - Submitted Vocareum Workspace
-- Pranav - Submitted Report on Brightspace
-- Parth - Submitted Presentation on Brightspace
 
 # Detailed Description of each Class
 
